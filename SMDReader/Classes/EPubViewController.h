@@ -15,64 +15,39 @@
 @class SearchResult;
 
 @interface EPubViewController : UIViewController <UIWebViewDelegate, ChapterDelegate, UISearchBarDelegate> {
-    
-    UIToolbar *toolbar;
-        
-	UIWebView *webView;
-    
-    UIBarButtonItem* chapterListButton;
-	
-	UIBarButtonItem* decTextSizeButton;
-	UIBarButtonItem* incTextSizeButton;
-    
-    UISlider* pageSlider;
-    UILabel* currentPageLabel;
-			
-	EPub* loadedEpub;
-	int currentSpineIndex;
-	int currentPageInSpineIndex;
-	int pagesInCurrentSpineCount;
-	int currentTextSize;
-	int totalPagesCount;
-    
-    BOOL epubLoaded;
-    BOOL paginating;
-    BOOL searching;
-    
-    UIPopoverController* chaptersPopover;
-    UIPopoverController* searchResultsPopover;
-
-    SearchResultsViewController* searchResViewController;
-    SearchResult* currentSearchResult;
+  
 }
 
-- (IBAction) showChapterIndex:(id)sender;
-- (IBAction) increaseTextSizeClicked:(id)sender;
-- (IBAction) decreaseTextSizeClicked:(id)sender;
-- (IBAction) slidingStarted:(id)sender;
-- (IBAction) slidingEnded:(id)sender;
-- (IBAction) doneClicked:(id)sender;
+- (IBAction)showChapterIndex:(id)sender;
+- (IBAction)increaseTextSizeClicked:(id)sender;
+- (IBAction)decreaseTextSizeClicked:(id)sender;
+- (IBAction)slidingStarted:(id)sender;
+- (IBAction)slidingEnded:(id)sender;
+- (IBAction)doneClicked:(id)sender;
 
-- (void) loadSpine:(int)spineIndex atPageIndex:(int)pageIndex highlightSearchResult:(SearchResult*)theResult;
+- (void) loadSpine:(int)spineIndex atPageIndex:(int)pageIndex highlightSearchResult:(SearchResult *)theResult;
 
-- (void) loadEpub:(NSURL*) epubURL;
+- (void) loadEpub:(NSURL *)epubURL;
 
-@property (nonatomic, retain) EPub* loadedEpub;
+@property (nonatomic, strong) EPub *loadedEpub;
 
-@property (nonatomic, retain) SearchResult* currentSearchResult;
+@property (nonatomic, strong) SearchResult *currentSearchResult;
 
-@property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, strong) IBOutlet UIToolbar *toolbar;
 
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) IBOutlet UIWebView *webView;
 
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *chapterListButton;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *chapterListButton, *decTextSizeButton, *incTextSizeButton;
 
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *decTextSizeButton;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *incTextSizeButton;
+@property (nonatomic, strong) IBOutlet UISlider *pageSlider;
+@property (nonatomic, strong) IBOutlet UILabel *currentPageLabel;
 
-@property (nonatomic, retain) IBOutlet UISlider *pageSlider;
-@property (nonatomic, retain) IBOutlet UILabel *currentPageLabel;
+@property (nonatomic, strong) UIPopoverController *chaptersPopover, *searchResultsPopover;
 
-@property BOOL searching;
+@property (nonatomic, strong) SearchResultsViewController *searchResViewController;
+
+@property (nonatomic, assign) int currentSpineIndex, currentPageInSpineIndex, pagesInCurrentSpineCount, currentTextSize, totalPagesCount;
+
+@property (nonatomic, assign) BOOL epubLoaded, paginating, searching;
 
 @end

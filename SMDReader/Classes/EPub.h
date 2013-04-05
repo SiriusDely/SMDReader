@@ -8,16 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "TouchXML.h"
-		
 
-@interface EPub : NSObject {
-	NSArray* spineArray;
-	NSString* epubFilePath;
-}
 
-@property(nonatomic, retain) NSArray* spineArray;
+@interface EPub : NSObject
 
-- (id) initWithEPubPath:(NSString*)path;
+@property(nonatomic, strong) NSArray *spineArray;
+@property(nonatomic, strong) NSString *epubFilePath;
+
+- (id)initWithEPubPath:(NSString *)path;
 
 
 @end

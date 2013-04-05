@@ -9,18 +9,12 @@
 #import <Foundation/Foundation.h>
 
 
-@interface SearchResult : NSObject {
-    int chapterIndex;
-    int hitIndex;
-    int pageIndex;
-    NSString* neighboringText;
-    NSString* originatingQuery;
-}
+@interface SearchResult : NSObject
 
-@property int chapterIndex, pageIndex, hitIndex;
-@property (nonatomic, retain) NSString *neighboringText, *originatingQuery;
+@property (nonatomic, assign) int chapterIndex, pageIndex, hitIndex;
+@property (nonatomic, strong) NSString *neighboringText, *originatingQuery;
 
-- initWithChapterIndex:(int)theChapterIndex pageIndex:(int)thePageIndex hitIndex:(int)theHitIndex neighboringText:(NSString*)theNeighboringText originatingQuery:(NSString*)theOriginatingQuery;
+- initWithChapterIndex:(int)theChapterIndex pageIndex:(int)thePageIndex hitIndex:(int)theHitIndex neighboringText:(NSString *)theNeighboringText originatingQuery:(NSString *)theOriginatingQuery;
 
 
 @end

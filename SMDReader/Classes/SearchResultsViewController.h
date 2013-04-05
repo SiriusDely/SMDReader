@@ -9,20 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "EPubViewController.h"
 
-@interface SearchResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIWebViewDelegate> {
-    UITableView* resultsTableView;
-    NSMutableArray* results;
-    EPubViewController* epubViewController;
-    
-    int currentChapterIndex;
-    NSString* currentQuery;
-}
+@interface SearchResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIWebViewDelegate>
 
-@property (nonatomic, retain) IBOutlet UITableView* resultsTableView;
-@property (nonatomic, assign) EPubViewController* epubViewController;
-@property (nonatomic, retain) NSMutableArray* results;
-@property (nonatomic, retain) NSString* currentQuery;
+@property (nonatomic, strong) IBOutlet UITableView *resultsTableView;
+@property (nonatomic, weak) EPubViewController *epubViewController;
+@property (nonatomic, strong) NSMutableArray *results;
+@property (nonatomic, strong) NSString *currentQuery;
+@property (nonatomic, assign) int currentChapterIndex;
 
-- (void) searchString:(NSString*)query;
+- (void)searchString:(NSString *)query;
 
 @end

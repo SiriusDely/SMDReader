@@ -15,14 +15,14 @@
 @end
 
 @interface Chapter : NSObject <UIWebViewDelegate>{
-    NSString* spinePath;
-    NSString* title;
+  NSString* spinePath;
+  NSString* title;
 	NSString* text;
-    id <ChapterDelegate> delegate;
-    int pageCount;
-    int chapterIndex;
-    CGRect windowSize;
-    int fontPercentSize;
+  id <ChapterDelegate> delegate;
+  int pageCount;
+  int chapterIndex;
+  CGRect windowSize;
+  int fontPercentSize;
 }
 
 @property (nonatomic, assign) id delegate;
