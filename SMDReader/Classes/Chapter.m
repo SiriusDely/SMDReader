@@ -13,7 +13,7 @@
 
 @synthesize delegate, chapterIndex, title, pageCount, spinePath, text, windowSize, fontPercentSize;
 
-- (id) initWithPath:(NSString*)theSpinePath title:(NSString*)theTitle chapterIndex:(int) theIndex{
+- (id)initWithPath:(NSString*)theSpinePath title:(NSString *)theTitle chapterIndex:(int)theIndex {
   if((self=[super init])){
     spinePath = [theSpinePath retain];
     title = [theTitle retain];
@@ -26,7 +26,7 @@
   return self;
 }
 
-- (void) loadChapterWithWindowSize:(CGRect)theWindowSize fontPercentSize:(int) theFontPercentSize{
+- (void)loadChapterWithWindowSize:(CGRect)theWindowSize fontPercentSize:(int)theFontPercentSize {
   fontPercentSize = theFontPercentSize;
   windowSize = theWindowSize;
   //  NSLog(@"webviewSize: %f * %f, fontPercentSize: %d", theWindowSize.size.width, theWindowSize.size.height,theFontPercentSize);
@@ -36,12 +36,12 @@
   [webView loadRequest:urlRequest];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
   NSLog(@"%@", error);
 	[webView dealloc];
 }
 
-- (void) webViewDidFinishLoad:(UIWebView*)webView{
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
   NSString *varMySheet = @"var mySheet = document.styleSheets[0];";
 	
 	NSString *addCSSRule =  @"function addCSSRule(selector, newRule) {"
@@ -61,13 +61,9 @@
   
 	
 	[webView stringByEvaluatingJavaScriptFromString:varMySheet];
-	
 	[webView stringByEvaluatingJavaScriptFromString:addCSSRule];
-  
 	[webView stringByEvaluatingJavaScriptFromString:insertRule1];
-	
 	[webView stringByEvaluatingJavaScriptFromString:insertRule2];
-	
   [webView stringByEvaluatingJavaScriptFromString:setTextSizeRule];
   
 	int totalWidth = [[webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.scrollWidth"] intValue];

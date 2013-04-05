@@ -14,7 +14,7 @@
 - (void) chapterDidFinishLoad:(Chapter*)chapter;
 @end
 
-@interface Chapter : NSObject <UIWebViewDelegate>{
+@interface Chapter : NSObject <UIWebViewDelegate> {
   NSString* spinePath;
   NSString* title;
 	NSString* text;
@@ -30,8 +30,8 @@
 @property (nonatomic, readonly) NSString *spinePath, *title, *text;
 @property (nonatomic, readonly) CGRect windowSize;
 
-- (id) initWithPath:(NSString*)theSpinePath title:(NSString*)theTitle chapterIndex:(int) theIndex;
+- (id) initWithPath:(NSString*)theSpinePath title:(NSString *)theTitle chapterIndex:(int)theIndex;
 
-- (void) loadChapterWithWindowSize:(CGRect)theWindowSize fontPercentSize:(int) theFontPercentSize;
+- (void) loadChapterWithWindowSize:(CGRect)theWindowSize fontPercentSize:(int)theFontPercentSize;
 
 @end
