@@ -11,6 +11,6 @@
 
 @interface ChapterListViewController : UITableViewController
 
-@property(nonatomic, weak) EPubViewController* epubViewController;
+@property(nonatomic, strong) EPubViewController *epubViewController;
 
 @end

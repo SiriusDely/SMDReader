@@ -12,7 +12,7 @@
 @interface SearchResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIWebViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *resultsTableView;
-@property (nonatomic, weak) EPubViewController *epubViewController;
+@property (nonatomic, strong) EPubViewController *epubViewController;
 @property (nonatomic, strong) NSMutableArray *results;
 @property (nonatomic, strong) NSString *currentQuery;
 @property (nonatomic, assign) int currentChapterIndex;
