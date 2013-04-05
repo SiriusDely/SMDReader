@@ -1,0 +1,14 @@
+
+PODS:
+- TouchXML (0.1)
+- ZipArchive (1.01h)
+
+DEPENDENCIES:
+- TouchXML (= 0.1)
+- ZipArchive (= 1.01h)
+
+SPEC CHECKSUMS:
+  TouchXML: 0fb977f0bdd2ce2e5d0790c80751769459708810
+  ZipArchive: 1a98724ab6c80f6bb1bde02f831589b73062e91d
+
+COCOAPODS: 0.16.4

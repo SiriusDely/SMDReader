@@ -16,6 +16,24 @@
 		36D2E211170F14C60079FF3C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E210170F14C60079FF3C /* Default.png */; };
 		36D2E213170F14C60079FF3C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E212170F14C60079FF3C /* Default@2x.png */; };
 		36D2E215170F14C60079FF3C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E214170F14C60079FF3C /* Default-568h@2x.png */; };
+		36D2E228170F18BB0079FF3C /* ChapterListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E225170F18BB0079FF3C /* ChapterListViewController.xib */; };
+		36D2E229170F18BB0079FF3C /* EPubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E226170F18BB0079FF3C /* EPubView.xib */; };
+		36D2E22A170F18BB0079FF3C /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E227170F18BB0079FF3C /* SearchResultsViewController.xib */; };
+		36D2E230170F18CE0079FF3C /* orangeslide.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22B170F18CD0079FF3C /* orangeslide.png */; };
+		36D2E231170F18CE0079FF3C /* SearchWebView.js in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E22C170F18CD0079FF3C /* SearchWebView.js */; };
+		36D2E232170F18CE0079FF3C /* slider_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22D170F18CD0079FF3C /* slider_ball.png */; };
+		36D2E233170F18CE0079FF3C /* vhugo.epub in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22E170F18CD0079FF3C /* vhugo.epub */; };
+		36D2E234170F18CE0079FF3C /* yellowslide.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22F170F18CD0079FF3C /* yellowslide.png */; };
+		36D2E253170F19CC0079FF3C /* Chapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E241170F19CC0079FF3C /* Chapter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36D2E254170F19CC0079FF3C /* ChapterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E243170F19CC0079FF3C /* ChapterListViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36D2E255170F19CC0079FF3C /* EPub.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E245170F19CC0079FF3C /* EPub.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36D2E256170F19CC0079FF3C /* EPubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E247170F19CC0079FF3C /* EPubViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36D2E257170F19CC0079FF3C /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E24A170F19CC0079FF3C /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36D2E258170F19CC0079FF3C /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E24C170F19CC0079FF3C /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36D2E259170F19CC0079FF3C /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E24E170F19CC0079FF3C /* SearchResult.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36D2E25A170F19CC0079FF3C /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E250170F19CC0079FF3C /* SearchResultsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36D2E25B170F19CC0079FF3C /* UIWebView+SearchWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E252170F19CC0079FF3C /* UIWebView+SearchWebView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		40117593DA594550852666CF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B77A2BA126EB463EABFDF5D2 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +50,35 @@
 		36D2E210170F14C60079FF3C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		36D2E212170F14C60079FF3C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		36D2E214170F14C60079FF3C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		36D2E225170F18BB0079FF3C /* ChapterListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChapterListViewController.xib; sourceTree = "<group>"; };
+		36D2E226170F18BB0079FF3C /* EPubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EPubView.xib; sourceTree = "<group>"; };
+		36D2E227170F18BB0079FF3C /* SearchResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
+		36D2E22B170F18CD0079FF3C /* orangeslide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeslide.png; sourceTree = "<group>"; };
+		36D2E22C170F18CD0079FF3C /* SearchWebView.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SearchWebView.js; sourceTree = "<group>"; };
+		36D2E22D170F18CD0079FF3C /* slider_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_ball.png; sourceTree = "<group>"; };
+		36D2E22E170F18CD0079FF3C /* vhugo.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = vhugo.epub; sourceTree = "<group>"; };
+		36D2E22F170F18CD0079FF3C /* yellowslide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowslide.png; sourceTree = "<group>"; };
+		36D2E240170F19CC0079FF3C /* Chapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chapter.h; sourceTree = "<group>"; };
+		36D2E241170F19CC0079FF3C /* Chapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chapter.m; sourceTree = "<group>"; };
+		36D2E242170F19CC0079FF3C /* ChapterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChapterListViewController.h; sourceTree = "<group>"; };
+		36D2E243170F19CC0079FF3C /* ChapterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChapterListViewController.m; sourceTree = "<group>"; };
+		36D2E244170F19CC0079FF3C /* EPub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPub.h; sourceTree = "<group>"; };
+		36D2E245170F19CC0079FF3C /* EPub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPub.m; sourceTree = "<group>"; };
+		36D2E246170F19CC0079FF3C /* EPubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPubViewController.h; sourceTree = "<group>"; };
+		36D2E247170F19CC0079FF3C /* EPubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPubViewController.m; sourceTree = "<group>"; };
+		36D2E248170F19CC0079FF3C /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		36D2E249170F19CC0079FF3C /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		36D2E24A170F19CC0079FF3C /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		36D2E24B170F19CC0079FF3C /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		36D2E24C170F19CC0079FF3C /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		36D2E24D170F19CC0079FF3C /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
+		36D2E24E170F19CC0079FF3C /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResult.m; sourceTree = "<group>"; };
+		36D2E24F170F19CC0079FF3C /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
+		36D2E250170F19CC0079FF3C /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
+		36D2E251170F19CC0079FF3C /* UIWebView+SearchWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+SearchWebView.h"; sourceTree = "<group>"; };
+		36D2E252170F19CC0079FF3C /* UIWebView+SearchWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+SearchWebView.m"; sourceTree = "<group>"; };
+		6396EC1FE1F64855A80BD6F0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		B77A2BA126EB463EABFDF5D2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +89,7 @@
 				36D2E1FF170F14C60079FF3C /* UIKit.framework in Frameworks */,
 				36D2E201170F14C60079FF3C /* Foundation.framework in Frameworks */,
 				36D2E203170F14C60079FF3C /* CoreGraphics.framework in Frameworks */,
+				40117593DA594550852666CF /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +102,7 @@
 				36D2E204170F14C60079FF3C /* SMDReader */,
 				36D2E1FD170F14C60079FF3C /* Frameworks */,
 				36D2E1FB170F14C60079FF3C /* Products */,
+				6396EC1FE1F64855A80BD6F0 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +120,7 @@
 				36D2E1FE170F14C60079FF3C /* UIKit.framework */,
 				36D2E200170F14C60079FF3C /* Foundation.framework */,
 				36D2E202170F14C60079FF3C /* CoreGraphics.framework */,
+				B77A2BA126EB463EABFDF5D2 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -78,6 +128,8 @@
 		36D2E204170F14C60079FF3C /* SMDReader */ = {
 			isa = PBXGroup;
 			children = (
+				36D2E222170F18520079FF3C /* Classes */,
+				36D2E224170F18640079FF3C /* Resources */,
 				36D2E20D170F14C60079FF3C /* SMDAppDelegate.h */,
 				36D2E20E170F14C60079FF3C /* SMDAppDelegate.m */,
 				36D2E205170F14C60079FF3C /* Supporting Files */,
@@ -99,6 +151,47 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		36D2E222170F18520079FF3C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				36D2E240170F19CC0079FF3C /* Chapter.h */,
+				36D2E241170F19CC0079FF3C /* Chapter.m */,
+				36D2E242170F19CC0079FF3C /* ChapterListViewController.h */,
+				36D2E243170F19CC0079FF3C /* ChapterListViewController.m */,
+				36D2E244170F19CC0079FF3C /* EPub.h */,
+				36D2E245170F19CC0079FF3C /* EPub.m */,
+				36D2E246170F19CC0079FF3C /* EPubViewController.h */,
+				36D2E247170F19CC0079FF3C /* EPubViewController.m */,
+				36D2E248170F19CC0079FF3C /* GTMDefines.h */,
+				36D2E249170F19CC0079FF3C /* GTMNSString+HTML.h */,
+				36D2E24A170F19CC0079FF3C /* GTMNSString+HTML.m */,
+				36D2E24B170F19CC0079FF3C /* NSString+HTML.h */,
+				36D2E24C170F19CC0079FF3C /* NSString+HTML.m */,
+				36D2E24D170F19CC0079FF3C /* SearchResult.h */,
+				36D2E24E170F19CC0079FF3C /* SearchResult.m */,
+				36D2E24F170F19CC0079FF3C /* SearchResultsViewController.h */,
+				36D2E250170F19CC0079FF3C /* SearchResultsViewController.m */,
+				36D2E251170F19CC0079FF3C /* UIWebView+SearchWebView.h */,
+				36D2E252170F19CC0079FF3C /* UIWebView+SearchWebView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		36D2E224170F18640079FF3C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				36D2E225170F18BB0079FF3C /* ChapterListViewController.xib */,
+				36D2E226170F18BB0079FF3C /* EPubView.xib */,
+				36D2E227170F18BB0079FF3C /* SearchResultsViewController.xib */,
+				36D2E22B170F18CD0079FF3C /* orangeslide.png */,
+				36D2E22C170F18CD0079FF3C /* SearchWebView.js */,
+				36D2E22D170F18CD0079FF3C /* slider_ball.png */,
+				36D2E22E170F18CD0079FF3C /* vhugo.epub */,
+				36D2E22F170F18CD0079FF3C /* yellowslide.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,6 +202,7 @@
 				36D2E1F6170F14C60079FF3C /* Sources */,
 				36D2E1F7170F14C60079FF3C /* Frameworks */,
 				36D2E1F8170F14C60079FF3C /* Resources */,
+				EA9FCEDB60864BC089253DC4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,10 +249,34 @@
 				36D2E211170F14C60079FF3C /* Default.png in Resources */,
 				36D2E213170F14C60079FF3C /* Default@2x.png in Resources */,
 				36D2E215170F14C60079FF3C /* Default-568h@2x.png in Resources */,
+				36D2E228170F18BB0079FF3C /* ChapterListViewController.xib in Resources */,
+				36D2E229170F18BB0079FF3C /* EPubView.xib in Resources */,
+				36D2E22A170F18BB0079FF3C /* SearchResultsViewController.xib in Resources */,
+				36D2E230170F18CE0079FF3C /* orangeslide.png in Resources */,
+				36D2E232170F18CE0079FF3C /* slider_ball.png in Resources */,
+				36D2E233170F18CE0079FF3C /* vhugo.epub in Resources */,
+				36D2E234170F18CE0079FF3C /* yellowslide.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EA9FCEDB60864BC089253DC4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		36D2E1F6170F14C60079FF3C /* Sources */ = {
@@ -167,6 +285,16 @@
 			files = (
 				36D2E20B170F14C60079FF3C /* main.m in Sources */,
 				36D2E20F170F14C60079FF3C /* SMDAppDelegate.m in Sources */,
+				36D2E231170F18CE0079FF3C /* SearchWebView.js in Sources */,
+				36D2E253170F19CC0079FF3C /* Chapter.m in Sources */,
+				36D2E254170F19CC0079FF3C /* ChapterListViewController.m in Sources */,
+				36D2E255170F19CC0079FF3C /* EPub.m in Sources */,
+				36D2E256170F19CC0079FF3C /* EPubViewController.m in Sources */,
+				36D2E257170F19CC0079FF3C /* GTMNSString+HTML.m in Sources */,
+				36D2E258170F19CC0079FF3C /* NSString+HTML.m in Sources */,
+				36D2E259170F19CC0079FF3C /* SearchResult.m in Sources */,
+				36D2E25A170F19CC0079FF3C /* SearchResultsViewController.m in Sources */,
+				36D2E25B170F19CC0079FF3C /* UIWebView+SearchWebView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +365,7 @@
 		};
 		36D2E219170F14C60079FF3C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6396EC1FE1F64855A80BD6F0 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SMDReader/SMDReader-Prefix.pch";
@@ -248,6 +377,7 @@
 		};
 		36D2E21A170F14C60079FF3C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6396EC1FE1F64855A80BD6F0 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SMDReader/SMDReader-Prefix.pch";
@@ -276,6 +406,7 @@
 				36D2E21A170F14C60079FF3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
