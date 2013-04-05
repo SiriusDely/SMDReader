@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TouchXML.h"
+#import <TouchXML.h>
 
 
 @interface EPub : NSObject

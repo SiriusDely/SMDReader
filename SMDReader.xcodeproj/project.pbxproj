@@ -28,8 +28,8 @@
 		36D2E254170F19CC0079FF3C /* ChapterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E243170F19CC0079FF3C /* ChapterListViewController.m */; };
 		36D2E255170F19CC0079FF3C /* EPub.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E245170F19CC0079FF3C /* EPub.m */; };
 		36D2E256170F19CC0079FF3C /* EPubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E247170F19CC0079FF3C /* EPubViewController.m */; };
-		36D2E257170F19CC0079FF3C /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E24A170F19CC0079FF3C /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		36D2E258170F19CC0079FF3C /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E24C170F19CC0079FF3C /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36D2E257170F19CC0079FF3C /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E24A170F19CC0079FF3C /* GTMNSString+HTML.m */; };
+		36D2E258170F19CC0079FF3C /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E24C170F19CC0079FF3C /* NSString+HTML.m */; };
 		36D2E259170F19CC0079FF3C /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E24E170F19CC0079FF3C /* SearchResult.m */; };
 		36D2E25A170F19CC0079FF3C /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E250170F19CC0079FF3C /* SearchResultsViewController.m */; };
 		36D2E25B170F19CC0079FF3C /* UIWebView+SearchWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E252170F19CC0079FF3C /* UIWebView+SearchWebView.m */; };
