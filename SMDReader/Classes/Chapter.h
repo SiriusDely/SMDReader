@@ -14,16 +14,7 @@
 - (void) chapterDidFinishLoad:(Chapter*)chapter;
 @end
 
-@interface Chapter : NSObject <UIWebViewDelegate> {
-  NSString* spinePath;
-  NSString* title;
-	NSString* text;
-  id <ChapterDelegate> delegate;
-  int pageCount;
-  int chapterIndex;
-  CGRect windowSize;
-  int fontPercentSize;
-}
+@interface Chapter : NSObject <UIWebViewDelegate>
 
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, readonly) int pageCount, chapterIndex, fontPercentSize;
