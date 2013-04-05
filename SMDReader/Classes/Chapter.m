@@ -16,13 +16,12 @@ windowSize = _windowSize, fontPercentSize = _fontPercentSize;
 
 - (id)initWithPath:(NSString*)theSpinePath title:(NSString *)theTitle chapterIndex:(int)theIndex {
   if(self = [super init]){
-    _spinePath = [theSpinePath retain];
-    _title = [theTitle retain];
+    _spinePath = theSpinePath;
+    _title = theTitle;
     _chapterIndex = theIndex;
     
 		NSString* html = [[NSString alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL fileURLWithPath:theSpinePath]] encoding:NSUTF8StringEncoding];
-		_text = [[html stringByConvertingHTMLToPlainText] retain];
-		[html release];
+		_text = [html stringByConvertingHTMLToPlainText];
   }
   return self;
 }
@@ -39,7 +38,6 @@ windowSize = _windowSize, fontPercentSize = _fontPercentSize;
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
   NSLog(@"%@", error);
-	[webView dealloc];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -72,17 +70,10 @@ windowSize = _windowSize, fontPercentSize = _fontPercentSize;
 	
   //    NSLog(@"Chapter %d: %@ -> %d pages", chapterIndex, title, pageCount);
   
-  [webView dealloc];
   [_delegate chapterDidFinishLoad:self];
   
 }
 
-- (void)dealloc {
-  [_title release];
-	[_spinePath release];
-	[_text release];
-  [super dealloc];
-}
 
 
 @end

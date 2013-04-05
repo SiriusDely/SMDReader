@@ -24,7 +24,7 @@
 		36D2E232170F18CE0079FF3C /* slider_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22D170F18CD0079FF3C /* slider_ball.png */; };
 		36D2E233170F18CE0079FF3C /* vhugo.epub in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22E170F18CD0079FF3C /* vhugo.epub */; };
 		36D2E234170F18CE0079FF3C /* yellowslide.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22F170F18CD0079FF3C /* yellowslide.png */; };
-		36D2E253170F19CC0079FF3C /* Chapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E241170F19CC0079FF3C /* Chapter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36D2E253170F19CC0079FF3C /* Chapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E241170F19CC0079FF3C /* Chapter.m */; };
 		36D2E254170F19CC0079FF3C /* ChapterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E243170F19CC0079FF3C /* ChapterListViewController.m */; };
 		36D2E255170F19CC0079FF3C /* EPub.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E245170F19CC0079FF3C /* EPub.m */; };
 		36D2E256170F19CC0079FF3C /* EPubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E247170F19CC0079FF3C /* EPubViewController.m */; };
@@ -367,6 +367,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6396EC1FE1F64855A80BD6F0 /* Pods.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SMDReader/SMDReader-Prefix.pch";
 				INFOPLIST_FILE = "SMDReader/SMDReader-Info.plist";
@@ -379,6 +380,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6396EC1FE1F64855A80BD6F0 /* Pods.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SMDReader/SMDReader-Prefix.pch";
 				INFOPLIST_FILE = "SMDReader/SMDReader-Info.plist";

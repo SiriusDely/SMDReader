@@ -16,7 +16,7 @@
 
 @interface Chapter : NSObject <UIWebViewDelegate>
 
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, unsafe_unretained) id delegate;
 @property (nonatomic, readonly) int pageCount, chapterIndex, fontPercentSize;
 @property (nonatomic, readonly) NSString *spinePath, *title, *text;
 @property (nonatomic, readonly) CGRect windowSize;
