@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.author   = { 'Sirius Dely' => 'mail@siriusdely.com' }
   s.license  = 'MIT'
 
-  s.source   = { :git => 'https://github.com/siriusdely/SMDReader.git', :commit => 'bc380f50a76c5c998bf7bf1d3ddbd27c54b6af37' }
+  s.source   = { :git => 'https://github.com/siriusdely/SMDReader.git', :commit => '264f029982fdd3edf8d3a4653d50d70078748ee8' }
 
   s.platform = :ios
 

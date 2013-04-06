@@ -16,9 +16,7 @@
 		36D2E211170F14C60079FF3C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E210170F14C60079FF3C /* Default.png */; };
 		36D2E213170F14C60079FF3C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E212170F14C60079FF3C /* Default@2x.png */; };
 		36D2E215170F14C60079FF3C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E214170F14C60079FF3C /* Default-568h@2x.png */; };
-		36D2E228170F18BB0079FF3C /* ChapterListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E225170F18BB0079FF3C /* ChapterListViewController.xib */; };
 		36D2E229170F18BB0079FF3C /* EPubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E226170F18BB0079FF3C /* EPubView.xib */; };
-		36D2E22A170F18BB0079FF3C /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E227170F18BB0079FF3C /* SearchResultsViewController.xib */; };
 		36D2E230170F18CE0079FF3C /* orangeslide.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22B170F18CD0079FF3C /* orangeslide.png */; };
 		36D2E231170F18CE0079FF3C /* SearchWebView.js in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22C170F18CD0079FF3C /* SearchWebView.js */; };
 		36D2E232170F18CE0079FF3C /* slider_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22D170F18CD0079FF3C /* slider_ball.png */; };
@@ -50,9 +48,7 @@
 		36D2E210170F14C60079FF3C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		36D2E212170F14C60079FF3C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		36D2E214170F14C60079FF3C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		36D2E225170F18BB0079FF3C /* ChapterListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChapterListViewController.xib; sourceTree = "<group>"; };
 		36D2E226170F18BB0079FF3C /* EPubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EPubView.xib; sourceTree = "<group>"; };
-		36D2E227170F18BB0079FF3C /* SearchResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
 		36D2E22B170F18CD0079FF3C /* orangeslide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeslide.png; sourceTree = "<group>"; };
 		36D2E22C170F18CD0079FF3C /* SearchWebView.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SearchWebView.js; sourceTree = "<group>"; };
 		36D2E22D170F18CD0079FF3C /* slider_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_ball.png; sourceTree = "<group>"; };
@@ -180,9 +176,7 @@
 		36D2E224170F18640079FF3C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				36D2E225170F18BB0079FF3C /* ChapterListViewController.xib */,
 				36D2E226170F18BB0079FF3C /* EPubView.xib */,
-				36D2E227170F18BB0079FF3C /* SearchResultsViewController.xib */,
 				36D2E22B170F18CD0079FF3C /* orangeslide.png */,
 				36D2E22C170F18CD0079FF3C /* SearchWebView.js */,
 				36D2E22D170F18CD0079FF3C /* slider_ball.png */,
@@ -250,9 +244,7 @@
 				36D2E211170F14C60079FF3C /* Default.png in Resources */,
 				36D2E213170F14C60079FF3C /* Default@2x.png in Resources */,
 				36D2E215170F14C60079FF3C /* Default-568h@2x.png in Resources */,
-				36D2E228170F18BB0079FF3C /* ChapterListViewController.xib in Resources */,
 				36D2E229170F18BB0079FF3C /* EPubView.xib in Resources */,
-				36D2E22A170F18BB0079FF3C /* SearchResultsViewController.xib in Resources */,
 				36D2E230170F18CE0079FF3C /* orangeslide.png in Resources */,
 				36D2E232170F18CE0079FF3C /* slider_ball.png in Resources */,
 				36D2E233170F18CE0079FF3C /* vhugo.epub in Resources */,

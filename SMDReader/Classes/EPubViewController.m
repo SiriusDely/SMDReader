@@ -226,7 +226,7 @@ currentTextSize = _currentTextSize, totalPagesCount = _totalPagesCount;
 
 - (IBAction) showChapterIndex:(id)sender{
 	if(_chaptersPopover==nil){
-		ChapterListViewController* chapterListView = [[ChapterListViewController alloc] initWithNibName:@"ChapterListViewController" bundle:[NSBundle mainBundle]];
+		ChapterListViewController* chapterListView = [[ChapterListViewController alloc] init];
 		[chapterListView setEpubViewController:self];
 		_chaptersPopover = [[UIPopoverController alloc] initWithContentViewController:chapterListView];
 		[_chaptersPopover setPopoverContentSize:CGSizeMake(400, 600)];
@@ -355,7 +355,7 @@ currentTextSize = _currentTextSize, totalPagesCount = _totalPagesCount;
 	[_pageSlider setMinimumTrackImage:[[UIImage imageNamed:@"orangeSlide.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
 	[_pageSlider setMaximumTrackImage:[[UIImage imageNamed:@"yellowSlide.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
   
-	_searchResViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:[NSBundle mainBundle]];
+	_searchResViewController = [[SearchResultsViewController alloc] init];
 	_searchResViewController.epubViewController = self;
 }
 

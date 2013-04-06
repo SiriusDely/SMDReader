@@ -25,15 +25,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"Cell";
-  
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
-  cell.textLabel.numberOfLines = 2;
-  cell.textLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
-  cell.textLabel.adjustsFontSizeToFitWidth = YES;
-  cell.textLabel.text = [[_epubViewController.loadedEpub.spineArray objectAtIndex:[indexPath row]] title];
+  [cell.textLabel setNumberOfLines:2];
+  [cell.textLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
+  [cell.textLabel setAdjustsFontSizeToFitWidth:YES];
+  [cell.textLabel setText:[[_epubViewController.loadedEpub.spineArray objectAtIndex:[indexPath row]] title]];
   return cell;
 }
 

@@ -22,6 +22,11 @@ results = _results, currentChapterIndex = _currentChapterIndex;
 
 # pragma mark - View lifecycles
 
+- (void)loadView {
+  [super loadView];
+  _resultsTableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+}
+
 - (void)viewDidUnload {
   [super viewDidUnload];
   self.resultsTableView = nil;
