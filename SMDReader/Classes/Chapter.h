@@ -11,7 +11,7 @@
 
 @protocol ChapterDelegate <NSObject>
 @required
-- (void) chapterDidFinishLoad:(Chapter*)chapter;
+- (void)chapterDidFinishLoad:(Chapter *)chapter;
 @end
 
 @interface Chapter : NSObject <UIWebViewDelegate>

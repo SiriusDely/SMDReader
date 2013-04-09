@@ -17,11 +17,11 @@
 		36D2E213170F14C60079FF3C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E212170F14C60079FF3C /* Default@2x.png */; };
 		36D2E215170F14C60079FF3C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E214170F14C60079FF3C /* Default-568h@2x.png */; };
 		36D2E229170F18BB0079FF3C /* EPubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E226170F18BB0079FF3C /* EPubView.xib */; };
-		36D2E230170F18CE0079FF3C /* orangeslide.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22B170F18CD0079FF3C /* orangeslide.png */; };
+		36D2E230170F18CE0079FF3C /* slide-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22B170F18CD0079FF3C /* slide-normal.png */; };
 		36D2E231170F18CE0079FF3C /* SearchWebView.js in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22C170F18CD0079FF3C /* SearchWebView.js */; };
-		36D2E232170F18CE0079FF3C /* slider_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22D170F18CD0079FF3C /* slider_ball.png */; };
+		36D2E232170F18CE0079FF3C /* slide-center.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22D170F18CD0079FF3C /* slide-center.png */; };
 		36D2E233170F18CE0079FF3C /* vhugo.epub in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22E170F18CD0079FF3C /* vhugo.epub */; };
-		36D2E234170F18CE0079FF3C /* yellowslide.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22F170F18CD0079FF3C /* yellowslide.png */; };
+		36D2E234170F18CE0079FF3C /* slide-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D2E22F170F18CD0079FF3C /* slide-highlighted.png */; };
 		36D2E253170F19CC0079FF3C /* Chapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E241170F19CC0079FF3C /* Chapter.m */; };
 		36D2E254170F19CC0079FF3C /* ChapterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E243170F19CC0079FF3C /* ChapterListViewController.m */; };
 		36D2E255170F19CC0079FF3C /* EPub.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D2E245170F19CC0079FF3C /* EPub.m */; };
@@ -49,11 +49,11 @@
 		36D2E212170F14C60079FF3C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		36D2E214170F14C60079FF3C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		36D2E226170F18BB0079FF3C /* EPubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EPubView.xib; sourceTree = "<group>"; };
-		36D2E22B170F18CD0079FF3C /* orangeslide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeslide.png; sourceTree = "<group>"; };
+		36D2E22B170F18CD0079FF3C /* slide-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slide-normal.png"; sourceTree = "<group>"; };
 		36D2E22C170F18CD0079FF3C /* SearchWebView.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SearchWebView.js; sourceTree = "<group>"; };
-		36D2E22D170F18CD0079FF3C /* slider_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_ball.png; sourceTree = "<group>"; };
+		36D2E22D170F18CD0079FF3C /* slide-center.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slide-center.png"; sourceTree = "<group>"; };
 		36D2E22E170F18CD0079FF3C /* vhugo.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = vhugo.epub; sourceTree = "<group>"; };
-		36D2E22F170F18CD0079FF3C /* yellowslide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowslide.png; sourceTree = "<group>"; };
+		36D2E22F170F18CD0079FF3C /* slide-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slide-highlighted.png"; sourceTree = "<group>"; };
 		36D2E240170F19CC0079FF3C /* Chapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chapter.h; sourceTree = "<group>"; };
 		36D2E241170F19CC0079FF3C /* Chapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chapter.m; sourceTree = "<group>"; };
 		36D2E242170F19CC0079FF3C /* ChapterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChapterListViewController.h; sourceTree = "<group>"; };
@@ -177,11 +177,11 @@
 			isa = PBXGroup;
 			children = (
 				36D2E226170F18BB0079FF3C /* EPubView.xib */,
-				36D2E22B170F18CD0079FF3C /* orangeslide.png */,
 				36D2E22C170F18CD0079FF3C /* SearchWebView.js */,
-				36D2E22D170F18CD0079FF3C /* slider_ball.png */,
+				36D2E22F170F18CD0079FF3C /* slide-highlighted.png */,
+				36D2E22B170F18CD0079FF3C /* slide-normal.png */,
+				36D2E22D170F18CD0079FF3C /* slide-center.png */,
 				36D2E22E170F18CD0079FF3C /* vhugo.epub */,
-				36D2E22F170F18CD0079FF3C /* yellowslide.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -245,10 +245,10 @@
 				36D2E213170F14C60079FF3C /* Default@2x.png in Resources */,
 				36D2E215170F14C60079FF3C /* Default-568h@2x.png in Resources */,
 				36D2E229170F18BB0079FF3C /* EPubView.xib in Resources */,
-				36D2E230170F18CE0079FF3C /* orangeslide.png in Resources */,
-				36D2E232170F18CE0079FF3C /* slider_ball.png in Resources */,
+				36D2E230170F18CE0079FF3C /* slide-normal.png in Resources */,
+				36D2E232170F18CE0079FF3C /* slide-center.png in Resources */,
 				36D2E233170F18CE0079FF3C /* vhugo.epub in Resources */,
-				36D2E234170F18CE0079FF3C /* yellowslide.png in Resources */,
+				36D2E234170F18CE0079FF3C /* slide-highlighted.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +364,8 @@
 				GCC_PREFIX_HEADER = "SMDReader/SMDReader-Prefix.pch";
 				INFOPLIST_FILE = "SMDReader/SMDReader-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -377,6 +379,8 @@
 				GCC_PREFIX_HEADER = "SMDReader/SMDReader-Prefix.pch";
 				INFOPLIST_FILE = "SMDReader/SMDReader-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
