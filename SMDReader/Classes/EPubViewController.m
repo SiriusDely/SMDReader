@@ -43,12 +43,45 @@ currentTextSize = _currentTextSize, totalPagesCount = _totalPagesCount;
   return self;
 }
 
+- (void)loadView {
+  [super loadView];
+  [self.view setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
+  _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, 44.0)];
+  [_toolbar setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+  [self.view addSubview:_toolbar];
+  _webView = [[UIWebView alloc] initWithFrame:CGRectMake(_toolbar.frame.origin.x+20.0, _toolbar.frame.origin.y+_toolbar.frame.size.height+20.0,
+                                                         _toolbar.frame.size.width-(2*20.0), 862.0)];
+  [_webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+  [_webView setContentMode:UIViewContentModeScaleToFill];
+  [self.view addSubview:_webView];
+  _currentPageLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x+(self.view.bounds.size.width-100.0)/2, _webView.frame.origin.y+_webView.frame.size.height+8.0, 100.0, 21.0)];
+  [_currentPageLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin];
+  [_currentPageLabel setBackgroundColor:[UIColor clearColor]];
+  [_currentPageLabel setTextAlignment:NSTextAlignmentCenter];
+  [_currentPageLabel setFont:[UIFont fontWithName:@"Helvetica" size:17.0]];
+  [_currentPageLabel setTextColor:[UIColor lightGrayColor]];
+  [_currentPageLabel setText:@"0/0"];
+  [self.view addSubview:_currentPageLabel];
+  _pageSlider = [[UISlider alloc] initWithFrame:CGRectMake(_webView.frame.origin.x-(4.0/2), _webView.frame.origin.y+_webView.frame.size.height+37.0, _webView.frame.size.width+4.0, 23.0)];
+  [_pageSlider setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin];
+  [_pageSlider setMinimumValue:0.0];
+  [_pageSlider setMaximumValue:100.0];
+  [_pageSlider addTarget:self action:@selector(slidingStarted:) forControlEvents:UIControlEventValueChanged];
+  [_pageSlider addTarget:self action:@selector(slidingEnded:) forControlEvents:UIControlEventTouchUpInside];
+  [_pageSlider addTarget:self action:@selector(slidingEnded:) forControlEvents:UIControlEventTouchUpOutside];
+  [self.view addSubview:_pageSlider];
+	[_pageSlider setThumbImage:[UIImage imageNamed:@"slide-center"] forState:UIControlStateNormal];
+	[_pageSlider setMinimumTrackImage:[[UIImage imageNamed:@"slide-normal"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
+	[_pageSlider setMaximumTrackImage:[[UIImage imageNamed:@"slide-highlighted"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
+}
+
 #pragma mark - View Lifecycles
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
   NSLog(@"viewDidLoad");
   [super viewDidLoad];
+  //return;
 	[_webView setDelegate:self];
 	UIScrollView *sv = nil;
 	for (UIView *v in  _webView.subviews) {
@@ -59,17 +92,14 @@ currentTextSize = _currentTextSize, totalPagesCount = _totalPagesCount;
 		}
 	}
 	_currentTextSize = 100;
-	UISwipeGestureRecognizer* rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(gotoNextPage)];
+	UISwipeGestureRecognizer *rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(gotoNextPage)];
 	[rightSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
-	UISwipeGestureRecognizer* leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(gotoPrevPage)];
+	UISwipeGestureRecognizer *leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(gotoPrevPage)];
 	[leftSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
 	[_webView addGestureRecognizer:rightSwipeRecognizer];
 	[_webView addGestureRecognizer:leftSwipeRecognizer];
-	[_pageSlider setThumbImage:[UIImage imageNamed:@"slide-center"] forState:UIControlStateNormal];
-	[_pageSlider setMinimumTrackImage:[[UIImage imageNamed:@"slide-normal"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
-	[_pageSlider setMaximumTrackImage:[[UIImage imageNamed:@"slide-highlighted"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
 	_searchResViewController = [[SearchResultsViewController alloc] init];
-	_searchResViewController.epubViewController = self;
+	[_searchResViewController setEpubViewController:self];
   [self loadEpub:self.url];
 }
 
