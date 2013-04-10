@@ -45,24 +45,20 @@ currentTextSize = _currentTextSize, totalPagesCount = _totalPagesCount;
 
 - (void)loadView {
   [super loadView];
-  [self.view setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
+  [self.view setBackgroundColor:[UIColor whiteColor]];
   _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, 44.0)];
   [_toolbar setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+  UIBarButtonItem *closeBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleBordered
+                                                                        target:self action:@selector(doneClicked:)];
+  UIBarButtonItem *flexibleBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+  [_toolbar setItems:[NSArray arrayWithObjects:closeBarButtonItem, flexibleBarButtonItem, nil]];
   [self.view addSubview:_toolbar];
   _webView = [[UIWebView alloc] initWithFrame:CGRectMake(_toolbar.frame.origin.x+20.0, _toolbar.frame.origin.y+_toolbar.frame.size.height+20.0,
                                                          _toolbar.frame.size.width-(2*20.0), 862.0)];
   [_webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
   [_webView setContentMode:UIViewContentModeScaleToFill];
   [self.view addSubview:_webView];
-  _currentPageLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x+(self.view.bounds.size.width-100.0)/2, _webView.frame.origin.y+_webView.frame.size.height+8.0, 100.0, 21.0)];
-  [_currentPageLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin];
-  [_currentPageLabel setBackgroundColor:[UIColor clearColor]];
-  [_currentPageLabel setTextAlignment:NSTextAlignmentCenter];
-  [_currentPageLabel setFont:[UIFont fontWithName:@"Helvetica" size:17.0]];
-  [_currentPageLabel setTextColor:[UIColor lightGrayColor]];
-  [_currentPageLabel setText:@"0/0"];
-  [self.view addSubview:_currentPageLabel];
-  _pageSlider = [[UISlider alloc] initWithFrame:CGRectMake(_webView.frame.origin.x-(4.0/2), _webView.frame.origin.y+_webView.frame.size.height+37.0, _webView.frame.size.width+4.0, 23.0)];
+  _pageSlider = [[UISlider alloc] initWithFrame:CGRectMake(_webView.frame.origin.x-(4.0/2), self.view.bounds.origin.y+self.view.bounds.size.height-20.0-23.0, _webView.frame.size.width+4.0, 23.0)];
   [_pageSlider setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin];
   [_pageSlider setMinimumValue:0.0];
   [_pageSlider setMaximumValue:100.0];
@@ -73,6 +69,14 @@ currentTextSize = _currentTextSize, totalPagesCount = _totalPagesCount;
 	[_pageSlider setThumbImage:[UIImage imageNamed:@"slide-center"] forState:UIControlStateNormal];
 	[_pageSlider setMinimumTrackImage:[[UIImage imageNamed:@"slide-normal"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
 	[_pageSlider setMaximumTrackImage:[[UIImage imageNamed:@"slide-highlighted"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
+  _currentPageLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x+(self.view.bounds.size.width-100.0)/2, _pageSlider.frame.origin.y-8.0-21.0, 100.0, 21.0)];
+  [_currentPageLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin];
+  [_currentPageLabel setBackgroundColor:[UIColor clearColor]];
+  [_currentPageLabel setTextAlignment:NSTextAlignmentCenter];
+  [_currentPageLabel setFont:[UIFont fontWithName:@"Helvetica" size:17.0]];
+  [_currentPageLabel setTextColor:[UIColor lightGrayColor]];
+  [_currentPageLabel setText:@"0/0"];
+  [self.view addSubview:_currentPageLabel];
 }
 
 #pragma mark - View Lifecycles
