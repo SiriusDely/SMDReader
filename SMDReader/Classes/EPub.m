@@ -6,53 +6,58 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "EPub.h"
 #import <ZipArchive.h>
+#import "EPub.h"
 #import "Chapter.h"
 
 @interface EPub ()
-- (void)parseEpub;
-- (void)unzipAndSaveFileNamed:(NSString *)fileName;
-- (NSString *)applicationDocumentsDirectory;
-- (NSString *)parseManifestFile;
-- (void)parseOPF:(NSString *)opfPath;
+
+@property(nonatomic, strong) NSString *path;
+@property(nonatomic, strong) NSString *opfPath;
+
+- (void)parse;
+- (void)unzip;
+- (void)parseManifest;
+- (void)parseOpf;
+- (NSString *)applicationDocumentsDirectoryPath;
+
 @end
 
 @implementation EPub
 
-@synthesize spineArray = _spineArray, epubFilePath = _epubFilePath;
+@synthesize spineArray = _spineArray, path = _path, opfPath = _opfPath;
 
-- (id)initWithEPubPath:(NSString *)path {
+- (id)initWithUrl:(NSURL *)url {
 	if(self = [super init]){
-		_epubFilePath = path;
+		_path = url.path;
 		_spineArray = [[NSMutableArray alloc] init];
-		[self parseEpub];
+		[self parse];
 	}
 	return self;
 }
 
 # pragma mark - Private Methods
 
-- (void)parseEpub {
-	[self unzipAndSaveFileNamed:_epubFilePath];
-	NSString *opfPath = [self parseManifestFile];
-	[self parseOPF:opfPath];
+- (void)parse {
+	[self unzip];
+	[self parseManifest];
+	[self parseOpf];
 }
 
-- (void)unzipAndSaveFileNamed:(NSString *)fileName {
+- (void)unzip {
 	ZipArchive *zipArchive = [[ZipArchive alloc] init];
-  NSLog(@"unzipping: %@", fileName);
-	if([zipArchive UnzipOpenFile:fileName]){
-		NSString *strPath = [NSString stringWithFormat:@"%@/UnzippedEpub", [self applicationDocumentsDirectory]];
-    NSLog(@"strPath: %@", strPath);
+  NSLog(@"unzipping: %@", self.path);
+	if([zipArchive UnzipOpenFile:self.path]){
+		NSString *path = [NSString stringWithFormat:@"%@/SMDSocialReader/EPub", [self applicationDocumentsDirectoryPath]];
+    NSLog(@"path: %@", path);
 		// Delete all the previous files
-		NSFileManager *filemanager = [[NSFileManager alloc] init];
-		if ([filemanager fileExistsAtPath:strPath]) {
+		NSFileManager *fileManager = [[NSFileManager alloc] init];
+		if ([fileManager fileExistsAtPath:path]) {
 			NSError *error;
-			[filemanager removeItemAtPath:strPath error:&error];
+			[fileManager removeItemAtPath:path error:&error];
 		}
 		// start unzip
-		BOOL success = [zipArchive UnzipFileTo:[NSString stringWithFormat:@"%@/",strPath] overWrite:YES];
+		BOOL success = [zipArchive UnzipFileTo:[NSString stringWithFormat:@"%@/", path] overWrite:YES];
 		if(!success) {
 			// error handler here
       NSLog(@"Error while unzipping the epub");
@@ -61,35 +66,36 @@
 	}
 }
 
-- (NSString *)applicationDocumentsDirectory {
+- (NSString *)applicationDocumentsDirectoryPath {
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-  NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-  return basePath;
+  NSString *path = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+  return path;
 }
 
-- (NSString *)parseManifestFile {
-	NSString *manifestFilePath = [NSString stringWithFormat:@"%@/UnzippedEpub/META-INF/container.xml", [self applicationDocumentsDirectory]];
-  NSLog(@"manifestFilePath: %@", manifestFilePath);
+- (void)parseManifest {
+	NSString *path = [NSString stringWithFormat:@"%@/SMDSocialReader/EPub/META-INF/container.xml", [self applicationDocumentsDirectoryPath]];
+  NSLog(@"manifestPath: %@", path);
 	NSFileManager *fileManager = [[NSFileManager alloc] init];
-	if ([fileManager fileExistsAtPath:manifestFilePath]) {
+	if ([fileManager fileExistsAtPath:path]) {
     NSLog(@"Valid epub");
-		CXMLDocument* manifestFile = [[CXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:manifestFilePath] options:0 error:nil];
-		CXMLNode* opfPath = [manifestFile nodeForXPath:@"//@full-path[1]" error:nil];
-    NSLog(@"return: %@", [NSString stringWithFormat:@"%@/UnzippedEpub/%@", [self applicationDocumentsDirectory], [opfPath stringValue]]);
-		return [NSString stringWithFormat:@"%@/UnzippedEpub/%@", [self applicationDocumentsDirectory], [opfPath stringValue]];
+		CXMLDocument* manifestDocument = [[CXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] options:0 error:nil];
+		CXMLNode* opfNode = [manifestDocument nodeForXPath:@"//@full-path[1]" error:nil];
+    NSString *opfPath = [NSString stringWithFormat:@"%@/SMDSocialReader/EPub/%@", [self applicationDocumentsDirectoryPath], [opfNode stringValue]];
+    NSLog(@"opfPath: %@", opfPath);
+    self.opfPath = opfPath;
 	} else {
 		NSLog(@"ERROR: ePub not Valid");
-		return nil;
 	}
 }
 
-- (void)parseOPF:(NSString *)opfPath {
-	CXMLDocument *opfFile = [[CXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:opfPath] options:0 error:nil];
-	NSArray *itemsArray = [opfFile nodesForXPath:@"//opf:item" namespaceMappings:[NSDictionary dictionaryWithObject:@"http://www.idpf.org/2007/opf" forKey:@"opf"] error:nil];
+- (void)parseOpf {
+	CXMLDocument *opfDocument = [[CXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:self.opfPath] options:0 error:nil];
+	NSArray *itemsArray = [opfDocument nodesForXPath:@"//opf:item" namespaceMappings:[NSDictionary dictionaryWithObject:@"http://www.idpf.org/2007/opf" forKey:@"opf"]
+                                             error:nil];
   NSLog(@"itemsArray size: %d", [itemsArray count]);
-  NSString* ncxFileName;
-  NSMutableDictionary* itemDictionary = [[NSMutableDictionary alloc] init];
-	for (CXMLElement* element in itemsArray) {
+  NSString *ncxFileName;
+  NSMutableDictionary *itemDictionary = [[NSMutableDictionary alloc] init];
+	for (CXMLElement *element in itemsArray) {
 		[itemDictionary setValue:[[element attributeForName:@"href"] stringValue] forKey:[[element attributeForName:@"id"] stringValue]];
     if([[[element attributeForName:@"media-type"] stringValue] isEqualToString:@"application/x-dtbncx+xml"]){
       ncxFileName = [[element attributeForName:@"href"] stringValue];
@@ -100,29 +106,31 @@
       NSLog(@"%@ : %@", [[element attributeForName:@"id"] stringValue], [[element attributeForName:@"href"] stringValue]);
     }
 	}
-  int lastSlash = [opfPath rangeOfString:@"/" options:NSBackwardsSearch].location;
-	NSString *ebookBasePath = [opfPath substringToIndex:(lastSlash +1)];
-  CXMLDocument *ncxToc = [[CXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@%@", ebookBasePath, ncxFileName]] options:0 error:nil];
+  int lastSlash = [self.opfPath rangeOfString:@"/" options:NSBackwardsSearch].location;
+	NSString *ebookBasePath = [self.opfPath substringToIndex:(lastSlash +1)];
+  CXMLDocument *ncxToc = [[CXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@%@", ebookBasePath, ncxFileName]]
+                                                             options:0 error:nil];
   NSMutableDictionary *titleDictionary = [[NSMutableDictionary alloc] init];
   for (CXMLElement *element in itemsArray) {
     NSString *href = [[element attributeForName:@"href"] stringValue];
     NSString *xpath = [NSString stringWithFormat:@"//ncx:content[@src='%@']/../ncx:navLabel/ncx:text", href];
-    NSArray *navPoints = [ncxToc nodesForXPath:xpath namespaceMappings:[NSDictionary dictionaryWithObject:@"http://www.daisy.org/z3986/2005/ncx/" forKey:@"ncx"] error:nil];
+    NSArray *navPoints = [ncxToc nodesForXPath:xpath namespaceMappings:[NSDictionary dictionaryWithObject:@"http://www.daisy.org/z3986/2005/ncx/" forKey:@"ncx"]
+                                         error:nil];
     if([navPoints count]!=0){
       CXMLElement *titleElement = [navPoints objectAtIndex:0];
       [titleDictionary setValue:[titleElement stringValue] forKey:href];
     }
   }
-	NSArray* itemRefsArray = [opfFile nodesForXPath:@"//opf:itemref" namespaceMappings:[NSDictionary dictionaryWithObject:@"http://www.idpf.org/2007/opf" forKey:@"opf"] error:nil];
+	NSArray *itemRefsArray = [opfDocument nodesForXPath:@"//opf:itemref" namespaceMappings:[NSDictionary dictionaryWithObject:@"http://www.idpf.org/2007/opf" forKey:@"opf"]
+                                                error:nil];
   NSLog(@"itemRefsArray size: %d", [itemRefsArray count]);
 	NSMutableArray *tmpArray = [[NSMutableArray alloc] init];
   int count = 0;
 	for (CXMLElement *element in itemRefsArray) {
     NSString *chapHref = [itemDictionary valueForKey:[[element attributeForName:@"idref"] stringValue]];
-    Chapter *tmpChapter = [[Chapter alloc] initWithPath:[NSString stringWithFormat:@"%@%@", ebookBasePath, chapHref]
-                                                  title:[titleDictionary valueForKey:chapHref]
-                                           chapterIndex:count++];
-		[tmpArray addObject:tmpChapter];
+    Chapter *chapter = [[Chapter alloc] initWithPath:[NSString stringWithFormat:@"%@%@", ebookBasePath, chapHref]
+                                               title:[titleDictionary valueForKey:chapHref] chapterIndex:count++];
+		[tmpArray addObject:chapter];
 	}
 	self.spineArray = [NSArray arrayWithArray:tmpArray];
 }

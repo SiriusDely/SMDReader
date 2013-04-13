@@ -9,13 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <TouchXML.h>
 
-
 @interface EPub : NSObject
 
 @property(nonatomic, strong) NSArray *spineArray;
-@property(nonatomic, strong) NSString *epubFilePath;
 
-- (id)initWithEPubPath:(NSString *)path;
-
+- (id)initWithUrl:(NSURL *)url;
 
 @end

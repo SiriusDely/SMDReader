@@ -26,7 +26,6 @@
 - (IBAction)doneClicked:(id)sender;
 
 - (void)loadSpine:(int)spineIndex atPageIndex:(int)pageIndex highlightSearchResult:(SearchResult *)theResult;
-- (void)loadEpub:(NSURL *)epubURL;
 
 @property (nonatomic, strong) EPub *loadedEpub;
 @property (nonatomic, strong) SearchResult *currentSearchResult;
@@ -39,6 +38,5 @@
 @property (nonatomic, strong) SearchResultsViewController *searchResViewController;
 @property (nonatomic, assign) int currentSpineIndex, currentPageInSpineIndex, pagesInCurrentSpineCount, currentTextSize, totalPagesCount;
 @property (nonatomic, assign) BOOL epubLoaded, paginating, searching;
-@property (nonatomic, strong) NSURL *url;
 
 @end

@@ -15,10 +15,11 @@ Pod::Spec.new do |s|
     :commit => '264f029982fdd3edf8d3a4653d50d70078748ee8' 
   }
   s.platform = :ios
-  s.source_files = 'SMDReader/Classes/**/*.{h,m,mm}'
+  s.source_files = 'SMDReader/Classes/**/*.{h,m}'
   s.requires_arc = true
   s.compiler_flags = '-w' # Disable all warnings
-  s.resources = "SMDReader/Resources/*.{xib,png,js,epub}"
+  s.resources = "SMDReader/Resources/*.{png,js}"
   s.dependency 'TouchXML', '0.1'
   s.dependency 'ZipArchive', '1.01h'
 end
+
