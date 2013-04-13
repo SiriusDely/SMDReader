@@ -14,7 +14,7 @@
 @class SearchResultsViewController;
 @class SearchResult;
 
-@interface EPubViewController : UIViewController <UIWebViewDelegate, ChapterDelegate, UISearchBarDelegate>
+@interface EPubViewController : UIViewController
 
 - (id)initWithUrl:(NSURL *)url;
 
@@ -25,9 +25,9 @@
 - (IBAction)slidingEnded:(id)sender;
 - (IBAction)doneClicked:(id)sender;
 
-- (void)loadSpine:(int)spineIndex atPageIndex:(int)pageIndex highlightSearchResult:(SearchResult *)theResult;
+- (void)loadSpine:(int)spineIndex atPageIndex:(int)pageIndex highlightSearchResult:(SearchResult *)result;
 
-@property (nonatomic, strong) EPub *loadedEpub;
+@property (nonatomic, strong) EPub *epub;
 @property (nonatomic, strong) SearchResult *currentSearchResult;
 @property (nonatomic, strong) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
@@ -36,7 +36,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *currentPageLabel;
 @property (nonatomic, strong) UIPopoverController *chaptersPopover, *searchResultsPopover;
 @property (nonatomic, strong) SearchResultsViewController *searchResViewController;
-@property (nonatomic, assign) int currentSpineIndex, currentPageInSpineIndex, pagesInCurrentSpineCount, currentTextSize, totalPagesCount;
-@property (nonatomic, assign) BOOL epubLoaded, paginating, searching;
+@property (nonatomic, assign) int currentSpineIndex, currentPageInSpineIndex, pagesInCurrentSpineCount, currentTextSize, totalPages;
+@property (nonatomic, assign) BOOL loaded, paginating, searching;
 
 @end

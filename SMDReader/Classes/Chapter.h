@@ -17,12 +17,12 @@
 @interface Chapter : NSObject <UIWebViewDelegate>
 
 @property (nonatomic, unsafe_unretained) id delegate;
-@property (nonatomic, readonly) int pageCount, chapterIndex, fontPercentSize;
-@property (nonatomic, readonly) NSString *spinePath, *title, *text;
+@property (nonatomic, readonly) int pages, index, fontPercentSize;
+@property (nonatomic, readonly) NSString *path, *title, *text;
 @property (nonatomic, readonly) CGRect windowSize;
 
-- (id) initWithPath:(NSString*)theSpinePath title:(NSString *)theTitle chapterIndex:(int)theIndex;
+- (id)initWithPath:(NSString*)path title:(NSString *)title chapterIndex:(int)index;
 
-- (void) loadChapterWithWindowSize:(CGRect)theWindowSize fontPercentSize:(int)theFontPercentSize;
+- (void)loadChapterWithWindowSize:(CGRect)windowSize fontPercentSize:(int)fontPercentSize;
 
 @end

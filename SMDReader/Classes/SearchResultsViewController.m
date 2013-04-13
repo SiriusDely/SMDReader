@@ -34,24 +34,24 @@ results = _results, currentChapterIndex = _currentChapterIndex;
 
 # pragma mark - Private Methods
 
-- (void) searchString:(NSString *)query inChapterAtIndex:(int)index {
+- (void)searchString:(NSString *)query inChapterAtIndex:(int)index {
   _currentChapterIndex = index;
-  Chapter* chapter = [_epubViewController.loadedEpub.spineArray objectAtIndex:index];
+  Chapter *chapter = [_epubViewController.epub.chapters objectAtIndex:index];
   NSRange range = NSMakeRange(0, chapter.text.length);
   range = [chapter.text rangeOfString:query options:NSCaseInsensitiveSearch range:range locale:nil];
-  int hitCount=0;
+  int hitCount = 0;
   while (range.location != NSNotFound) {
     range = NSMakeRange(range.location+range.length, chapter.text.length-(range.location+range.length));
     range = [chapter.text rangeOfString:query options:NSCaseInsensitiveSearch range:range locale:nil];
     hitCount++;
   }
-  if(hitCount!=0){
-    UIWebView* webView = [[UIWebView alloc] initWithFrame:chapter.windowSize];
+  if (hitCount != 0) {
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:chapter.windowSize];
     [webView setDelegate:self];
-    NSURLRequest* urlRequest = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:chapter.spinePath]];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:chapter.path]];
     [webView loadRequest:urlRequest];
   } else {
-    if((_currentChapterIndex+1)<[_epubViewController.loadedEpub.spineArray count]){
+    if((_currentChapterIndex+1)<[_epubViewController.epub.chapters count]){
       [self searchString:_currentQuery inChapterAtIndex:(_currentChapterIndex+1)];
     } else {
       _epubViewController.searching = NO;
@@ -114,7 +114,7 @@ results = _results, currentChapterIndex = _currentChapterIndex;
 	
 	NSString *insertRule1 = [NSString stringWithFormat:@"addCSSRule('html', 'padding: 0px; height: %fpx; -webkit-column-gap: 0px; -webkit-column-width: %fpx;')", webView.frame.size.height, webView.frame.size.width];
 	NSString *insertRule2 = [NSString stringWithFormat:@"addCSSRule('p', 'text-align: justify;')"];
-	NSString *setTextSizeRule = [NSString stringWithFormat:@"addCSSRule('body', '-webkit-text-size-adjust: %d%%;')",[[_epubViewController.loadedEpub.spineArray objectAtIndex:_currentChapterIndex] fontPercentSize]];
+	NSString *setTextSizeRule = [NSString stringWithFormat:@"addCSSRule('body', '-webkit-text-size-adjust: %d%%;')",[[_epubViewController.epub.chapters objectAtIndex:_currentChapterIndex] fontPercentSize]];
   
 	[webView stringByEvaluatingJavaScriptFromString:varMySheet];
 	[webView stringByEvaluatingJavaScriptFromString:addCSSRule];
@@ -165,7 +165,7 @@ results = _results, currentChapterIndex = _currentChapterIndex;
   }
     
   [_resultsTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-  if((_currentChapterIndex+1)<[_epubViewController.loadedEpub.spineArray count]) {
+  if((_currentChapterIndex+1)<[_epubViewController.epub.chapters count]) {
     [self searchString:_currentQuery inChapterAtIndex:(_currentChapterIndex+1)];
   } else {
     _epubViewController.searching = NO;

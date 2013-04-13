@@ -13,14 +13,14 @@
 
 @synthesize epubViewController = _epubViewController;
 
-#pragma mark - UITableViewDataSource
+# pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [_epubViewController.loadedEpub.spineArray count];
+  return [_epubViewController.epub.chapters count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -32,11 +32,11 @@
   [cell.textLabel setNumberOfLines:2];
   [cell.textLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
   [cell.textLabel setAdjustsFontSizeToFitWidth:YES];
-  [cell.textLabel setText:[[_epubViewController.loadedEpub.spineArray objectAtIndex:[indexPath row]] title]];
+  [cell.textLabel setText:[[_epubViewController.epub.chapters objectAtIndex:[indexPath row]] title]];
   return cell;
 }
 
-#pragma mark - UITableViewDelegate
+# pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:YES];

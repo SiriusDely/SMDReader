@@ -11,7 +11,7 @@
 
 @interface EPub : NSObject
 
-@property(nonatomic, strong) NSArray *spineArray;
+@property(nonatomic, strong) NSArray *chapters;
 
 - (id)initWithUrl:(NSURL *)url;
 
