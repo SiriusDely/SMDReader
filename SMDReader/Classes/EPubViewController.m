@@ -14,7 +14,10 @@
 #import "Chapter.h"
 
 @interface EPubViewController () <UIWebViewDelegate, ChapterDelegate, UISearchBarDelegate>
+
 @property (nonatomic, strong) NSURL *url;
+@property (nonatomic, strong) UIView *overlayView;
+
 - (void)gotoNextSpine;
 - (void)gotoPrevSpine;
 - (void)toggleToolbar;
@@ -24,11 +27,12 @@
 - (void)gotoPageInCurrentSpine:(int)pageIndex;
 - (void)updatePagination;
 - (void)loadSpine:(int)spineIndex atPageIndex:(int)pageIndex;
+
 @end
 
 @implementation EPubViewController
 
-@synthesize epub = _epub, toolbar = _toolbar, webView = _webView;
+@synthesize epub = _epub, toolbar = _toolbar, webView = _webView, overlayView = _overlayView;
 @synthesize chapterListButton = _chapterListButton, decTextSizeButton = _decTextSizeButton, incTextSizeButton = _incTextSizeButton;
 @synthesize currentPageLabel = _currentPageLabel, pageSlider = _pageSlider;
 @synthesize currentSearchResult = _currentSearchResult;
@@ -47,12 +51,17 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
 
 - (void)loadView {
   [super loadView];
-  [self.view setBackgroundColor:[UIColor whiteColor]];
-  //_webView = [[UIWebView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x+2.0, self.view.bounds.origin.y+2.0, self.view.bounds.size.width-(2*2.0), self.view.bounds.size.height-(2*2.0))];
-  _webView = [[UIWebView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x+20.0, self.view.bounds.origin.y+44.0+20.0, self.view.bounds.size.width-(2*20.0), 862.0)];
+  [self.view setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
+  _webView = [[UIWebView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x+10.0, self.view.bounds.origin.y+10.0, self.view.bounds.size.width-(2*10.0), self.view.bounds.size.height-(2*10.0))];
+  //_webView = [[UIWebView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x+20.0, self.view.bounds.origin.y+44.0+20.0, self.view.bounds.size.width-(2*20.0), 862.0)];
   [_webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
   [_webView setContentMode:UIViewContentModeScaleToFill];
   [self.view addSubview:_webView];
+  _overlayView = [[UIView alloc] initWithFrame:_webView.frame];
+  [_overlayView setBackgroundColor:[UIColor clearColor]];
+  [_overlayView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+  [_overlayView setContentMode:UIViewContentModeScaleToFill];
+  [self.view addSubview:_overlayView];
   _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, 44.0)];
   [_toolbar setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
   [_toolbar setAlpha:0.7];
@@ -88,23 +97,18 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
 - (void)viewDidLoad {
   [super viewDidLoad];
 	[_webView setDelegate:self];
-	UIScrollView *scrollView = nil;
-	for (UIView *view in  _webView.subviews) {
-		if([view isKindOfClass:[UIScrollView class]]){
-			scrollView = (UIScrollView *)view;
-			scrollView.scrollEnabled = NO;
-			scrollView.bounces = NO;
-		}
-	}
+	UIScrollView *scrollView = _webView.scrollView;
+  scrollView.scrollEnabled = NO;
+  scrollView.bounces = NO;
 	_currentTextSize = 100;
 	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleToolbar)];
 	UISwipeGestureRecognizer *rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(gotoNextPage)];
 	[rightSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
 	UISwipeGestureRecognizer *leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(gotoPrevPage)];
 	[leftSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
-	[self.view addGestureRecognizer:tapRecognizer];
-	[_webView addGestureRecognizer:rightSwipeRecognizer];
-	[_webView addGestureRecognizer:leftSwipeRecognizer];
+	[_overlayView addGestureRecognizer:tapRecognizer];
+	[_overlayView addGestureRecognizer:rightSwipeRecognizer];
+	[_overlayView addGestureRecognizer:leftSwipeRecognizer];
 	_searchResViewController = [[SearchResultsViewController alloc] init];
 	[_searchResViewController setEpubViewController:self];
   _currentSpineIndex = 0;
@@ -139,22 +143,28 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
 # pragma mark - Private Methods
 
 - (void)toggleToolbar {
-  NSLog(@"toggleToolbar");
-  [UIView animateWithDuration:0.7f animations:^ {
-    if (self.toolbar.hidden) {
-      [self.toolbar setAlpha:0.7];
-      [self.currentPageLabel setAlpha:0.7];
-      [self.pageSlider setAlpha:0.7];
-    } else {
-      [self.toolbar setAlpha:0.0];
-      [self.currentPageLabel setAlpha:0.0];
-      [self.pageSlider setAlpha:0.0];
-    }
-  } completion:^(BOOL finished) {
+  if (self.toolbar.hidden) {
     [self.toolbar setHidden:!self.toolbar.hidden];
     [self.currentPageLabel setHidden:!self.currentPageLabel.hidden];
     [self.pageSlider setHidden:!self.pageSlider.hidden];
-  }];
+    [UIView animateWithDuration:0.5f animations:^ {
+      [self.toolbar setAlpha:0.8];
+      [self.currentPageLabel setAlpha:0.8];
+      [self.pageSlider setAlpha:0.8];
+    } completion:^(BOOL finished) {
+      
+    }];
+  } else {
+    [UIView animateWithDuration:0.5f animations:^ {
+      [self.toolbar setAlpha:0.0];
+      [self.currentPageLabel setAlpha:0.0];
+      [self.pageSlider setAlpha:0.0];
+    } completion:^(BOOL finished) {
+      [self.toolbar setHidden:!self.toolbar.hidden];
+      [self.currentPageLabel setHidden:!self.currentPageLabel.hidden];
+      [self.pageSlider setHidden:!self.pageSlider.hidden];
+    }];
+  }
 }
 
 - (void)gotoNextPage {
@@ -194,13 +204,13 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
 }
 
 - (void)gotoPageInCurrentSpine:(int)pageIndex {
-	if (pageIndex >= _pagesInCurrentSpineCount) {
-		pageIndex = _pagesInCurrentSpineCount - 1;
-		_currentPageInSpineIndex = _pagesInCurrentSpineCount - 1;
+	if (pageIndex >= self.pagesInCurrentSpineCount) {
+		pageIndex = self.pagesInCurrentSpineCount-1;
+		self.currentPageInSpineIndex = self.pagesInCurrentSpineCount-1;
 	}
-	float pageOffset = pageIndex*_webView.bounds.size.width;
-	NSString* goToOffsetFunc = [NSString stringWithFormat:@" function pageScroll(xOffset){ window.scroll(xOffset,0); } "];
-	NSString* goTo = [NSString stringWithFormat:@"pageScroll(%f)", pageOffset];
+	float pageOffset = pageIndex * self.webView.bounds.size.width;
+	NSString *goToOffsetFunc = [NSString stringWithFormat:@" function pageScroll(xOffset){ window.scroll(xOffset,0); } "];
+	NSString *goTo = [NSString stringWithFormat:@"pageScroll(%f)", pageOffset];
 	[self.webView stringByEvaluatingJavaScriptFromString:goToOffsetFunc];
 	[self.webView stringByEvaluatingJavaScriptFromString:goTo];
 	if(!self.paginating){
@@ -227,12 +237,12 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
 }
 
 - (void)updatePagination {
-	if (_loaded) {
-    if (!_paginating) {
+	if (self.loaded) {
+    if (!self.paginating) {
       NSLog(@"Pagination Started!");
       self.paginating = YES;
       self.totalPages = 0;
-      [self loadSpine:_currentSpineIndex atPageIndex:self.currentPageInSpineIndex];
+      [self loadSpine:self.currentSpineIndex atPageIndex:self.currentPageInSpineIndex];
       [[self.epub.chapters objectAtIndex:0] setDelegate:self];
       [[self.epub.chapters objectAtIndex:0] loadChapterWithWindowSize:self.webView.bounds fontPercentSize:self.currentTextSize];
       [self.currentPageLabel setText:@"?/?"];
@@ -247,7 +257,7 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
 	self.currentSearchResult = result;
 	[self.chaptersPopover dismissPopoverAnimated:YES];
 	[self.searchResultsPopover dismissPopoverAnimated:YES];
-	NSURL *url = [NSURL fileURLWithPath:[[_epub.chapters objectAtIndex:spineIndex] path]];
+	NSURL *url = [NSURL fileURLWithPath:[[self.epub.chapters objectAtIndex:spineIndex] path]];
 	[self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 	self.currentPageInSpineIndex = pageIndex;
 	self.currentSpineIndex = spineIndex;
@@ -350,7 +360,7 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
   self.totalPages += chapter.pages;
 	if (chapter.index + 1 < [self.epub.chapters count]) {
 		[[self.epub.chapters objectAtIndex:chapter.index+1] setDelegate:self];
-		[[self.epub.chapters objectAtIndex:chapter.index+1] loadChapterWithWindowSize:_webView.bounds fontPercentSize:self.currentTextSize];
+		[[self.epub.chapters objectAtIndex:chapter.index+1] loadChapterWithWindowSize:self.webView.bounds fontPercentSize:self.currentTextSize];
 		[self.currentPageLabel setText:[NSString stringWithFormat:@"?/%d", _totalPages]];
 	} else {
 		[self.currentPageLabel setText:[NSString stringWithFormat:@"%d/%d",[self getGlobalPageCount], self.totalPages]];
@@ -363,7 +373,6 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
 # pragma mark - UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-  NSLog(@"webViewDidFinishLoad:");
 	NSString *varMySheet = @"var mySheet = document.styleSheets[0];";
 	NSString *addCSSRule =  @"function addCSSRule(selector, newRule) {"
 	"if (mySheet.addRule) {"
