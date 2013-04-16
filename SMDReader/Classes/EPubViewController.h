@@ -16,7 +16,7 @@
 
 @interface EPubViewController : UIViewController
 
-- (id)initWithUrl:(NSURL *)url;
+- (id)initWithFilePath:(NSString *)path;
 
 - (IBAction)showChapterIndex:(id)sender;
 - (IBAction)increaseTextSizeClicked:(id)sender;

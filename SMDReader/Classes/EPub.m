@@ -27,9 +27,9 @@
 
 @synthesize chapters = _chapters, path = _path, opfPath = _opfPath;
 
-- (id)initWithUrl:(NSURL *)url {
+- (id)initWithFilePath:(NSString *)path {
 	if(self = [super init]){
-		_path = url.path;
+		_path = path;
 		_chapters = [[NSMutableArray alloc] init];
 		[self parse];
 	}

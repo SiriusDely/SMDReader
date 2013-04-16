@@ -32,7 +32,6 @@ windowSize = _windowSize, fontPercentSize = _fontPercentSize, webView = _webView
 # pragma mark - Public Methods
 
 - (void)loadChapterWithWindowSize:(CGRect)windowSize fontPercentSize:(int)fontPercentSize {
-  NSLog(@"loadChapterWithWindowSize:");
   _fontPercentSize = fontPercentSize;
   _windowSize = windowSize;
   _webView = [[UIWebView alloc] initWithFrame:_windowSize];
@@ -53,7 +52,7 @@ windowSize = _windowSize, fontPercentSize = _fontPercentSize, webView = _webView
   "mySheet.insertRule(selector + '{' + newRule + ';}', ruleIndex);"   // For Firefox, Chrome, etc.
   "}"
 	"}";
-  NSLog(@"webview Size: %f * %f, fontPercentSize: %d", webView.bounds.size.width, webView.bounds.size.height, self.fontPercentSize);
+  // NSLog(@"webview Size: %f * %f, fontPercentSize: %d", webView.bounds.size.width, webView.bounds.size.height, self.fontPercentSize);
 	NSString *insertRule1 = [NSString stringWithFormat:@"addCSSRule('html', 'padding: 0px; height: %fpx; -webkit-column-gap: 0px; -webkit-column-width: %fpx;')", webView.frame.size.height, webView.frame.size.width];
 	NSString *insertRule2 = [NSString stringWithFormat:@"addCSSRule('p', 'text-align: justify;')"];
 	NSString *setTextSizeRule = [NSString stringWithFormat:@"addCSSRule('body', '-webkit-text-size-adjust: %d%%;')", self.fontPercentSize];
@@ -64,7 +63,7 @@ windowSize = _windowSize, fontPercentSize = _fontPercentSize, webView = _webView
   [webView stringByEvaluatingJavaScriptFromString:setTextSizeRule];
 	int totalWidth = [[webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.scrollWidth"] intValue];
 	_pages = (int)((float)totalWidth / webView.bounds.size.width);
-  NSLog(@"Chapter %d: %@ -> %d pages", _index, _title, _pages);
+  // NSLog(@"Chapter %d: %@ -> %d pages", _index, _title, _pages);
   [_delegate chapterDidFinishLoad:self];
 }
 

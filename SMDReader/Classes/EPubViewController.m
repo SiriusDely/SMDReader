@@ -15,7 +15,7 @@
 
 @interface EPubViewController () <UIWebViewDelegate, ChapterDelegate, UISearchBarDelegate>
 
-@property (nonatomic, strong) NSURL *url;
+@property (nonatomic, strong) NSString *path;
 @property (nonatomic, strong) UIView *overlayView;
 
 - (void)gotoNextSpine;
@@ -40,11 +40,11 @@
 @synthesize searchResViewController = _searchResViewController;
 @synthesize currentSpineIndex = _currentSpineIndex, currentPageInSpineIndex = _currentPageInSpineIndex, pagesInCurrentSpineCount = _pagesInCurrentSpineCount,
 currentTextSize = _currentTextSize, totalPages = _totalPages;
-@synthesize loaded = _loaded, paginating = _paginating, searching = _searching, url = _url;
+@synthesize loaded = _loaded, paginating = _paginating, searching = _searching, path = _path;
 
-- (id)initWithUrl:(NSURL *)url {
+- (id)initWithFilePath:(NSString *)path {
   if (self = [super init]) {
-    _url = url;
+    _path = path;
   }
   return self;
 }
@@ -117,7 +117,7 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
   _totalPages = 0;
 	_searching = NO;
   _loaded = NO;
-  _epub = [[EPub alloc] initWithUrl:self.url];
+  _epub = [[EPub alloc] initWithFilePath:self.path];
   _loaded = YES;
 	[self updatePagination];
 }

@@ -13,6 +13,6 @@
 
 @property(nonatomic, strong) NSArray *chapters;
 
-- (id)initWithUrl:(NSURL *)url;
+- (id)initWithFilePath:(NSString *)path;
 
 @end

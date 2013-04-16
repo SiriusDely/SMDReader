@@ -13,7 +13,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  EPubViewController *pubViewController = [[EPubViewController alloc] initWithUrl:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"vhugo" ofType:@"epub"]]];
+  NSURL *fileUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"vhugo" ofType:@"epub"]];
+  EPubViewController *pubViewController = [[EPubViewController alloc] initWithFilePath:fileUrl.path];
   [self.window setRootViewController:pubViewController];
   [self.window makeKeyAndVisible];
   return YES;
