@@ -19,7 +19,6 @@
 - (void)unzip;
 - (void)parseManifest;
 - (void)parseOpf;
-- (NSString *)applicationDocumentsDirectoryPath;
 
 @end
 
@@ -48,7 +47,7 @@
 	ZipArchive *zipArchive = [[ZipArchive alloc] init];
   NSLog(@"unzipping: %@", self.path);
 	if([zipArchive UnzipOpenFile:self.path]){
-		NSString *path = [NSString stringWithFormat:@"%@/UnZippedEPub", [self applicationDocumentsDirectoryPath]];
+		NSString *path = [NSString stringWithFormat:@"%@/SMDReader", NSTemporaryDirectory()];
     NSLog(@"path: %@", path);
 		// Delete all the previous files
 		NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -66,21 +65,15 @@
 	}
 }
 
-- (NSString *)applicationDocumentsDirectoryPath {
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-  NSString *path = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-  return path;
-}
-
 - (void)parseManifest {
-	NSString *containerPath = [NSString stringWithFormat:@"%@/UnZippedEPub/META-INF/container.xml", [self applicationDocumentsDirectoryPath]];
+	NSString *containerPath = [NSString stringWithFormat:@"%@/SMDReader/META-INF/container.xml", NSTemporaryDirectory()];
   NSLog(@"containerPath: %@", containerPath);
 	NSFileManager *fileManager = [[NSFileManager alloc] init];
 	if ([fileManager fileExistsAtPath:containerPath]) {
     NSLog(@"valid epub - container.xml exist");
 		CXMLDocument* manifestDocument = [[CXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:containerPath] options:0 error:nil];
 		CXMLNode *opfNode = [manifestDocument nodeForXPath:@"//@full-path[1]" error:nil];
-    NSString *opfPath = [NSString stringWithFormat:@"%@/UnZippedEPub/%@", [self applicationDocumentsDirectoryPath], [opfNode stringValue]];
+    NSString *opfPath = [NSString stringWithFormat:@"%@/SMDReader/%@", NSTemporaryDirectory(), [opfNode stringValue]];
     NSLog(@"opfPath: %@", opfPath);
     self.opfPath = opfPath;
 	} else {
@@ -126,7 +119,7 @@
     NSString *idref = [[element attributeForName:@"idref"] stringValue];
     NSString *href = [itemsDictionary valueForKey:idref];
     NSString *chapterPath = [NSString stringWithFormat:@"%@%@", basePath, href];
-    NSString *title = [titlesDictionary valueForKey:href];
+    NSString *title = [titlesDictionary objectForKey:href];
     Chapter *chapter = [[Chapter alloc] initWithPath:chapterPath title:title chapterIndex:count];
 		[chapters addObject:chapter];
 	}
