@@ -18,6 +18,19 @@
 @property (nonatomic, strong) NSString *path;
 @property (nonatomic, strong) UIView *overlayView;
 
+@property (nonatomic, strong) SearchResult *currentSearchResult;
+@property (nonatomic, strong) UIToolbar *toolbar;
+@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) UIBarButtonItem *chapterListButton, *decTextSizeButton, *incTextSizeButton;
+@property (nonatomic, strong) UISlider *pageSlider;
+@property (nonatomic, strong) UILabel *currentPageLabel;
+@property (nonatomic, strong) UIPopoverController *chaptersPopover, *searchResultsPopover;
+@property (nonatomic, strong) SearchResultsViewController *searchResViewController;
+@property (nonatomic, assign) int currentSpineIndex, currentPageInSpineIndex, pagesInCurrentSpineCount, currentTextSize, totalPages;
+@property (nonatomic, assign) BOOL loaded, paginating;
+
+@property (nonatomic, strong) UIWebView *chapterWebView;
+
 - (void)gotoNextSpine;
 - (void)gotoPrevSpine;
 - (void)toggleToolbar;
@@ -27,6 +40,13 @@
 - (void)gotoPageInCurrentSpine:(int)pageIndex;
 - (void)updatePagination;
 - (void)loadSpine:(int)spineIndex atPageIndex:(int)pageIndex;
+
+- (void)doneClicked:(id)sender;
+- (void)showChapterIndex:(id)sender;
+- (void)increaseTextSizeClicked:(id)sender;
+- (void)decreaseTextSizeClicked:(id)sender;
+- (void)slidingStarted:(id)sender;
+- (void)slidingEnded:(id)sender;
 
 @end
 
@@ -42,6 +62,8 @@
 currentTextSize = _currentTextSize, totalPages = _totalPages;
 @synthesize loaded = _loaded, paginating = _paginating, searching = _searching, path = _path;
 
+@synthesize chapterWebView = _chapterWebView;
+
 - (id)initWithFilePath:(NSString *)path {
   if (self = [super init]) {
     _path = path;
@@ -53,6 +75,7 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
   [super loadView];
   [self.view setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
   _webView = [[UIWebView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x+10.0, self.view.bounds.origin.y+10.0, self.view.bounds.size.width-(2*10.0), self.view.bounds.size.height-(2*10.0))];
+  _chapterWebView = [[UIWebView alloc] initWithFrame:_webView.frame];
   //_webView = [[UIWebView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x+20.0, self.view.bounds.origin.y+44.0+20.0, self.view.bounds.size.width-(2*20.0), 862.0)];
   [_webView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
   [_webView setContentMode:UIViewContentModeScaleToFill];
@@ -244,7 +267,7 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
       self.totalPages = 0;
       [self loadSpine:self.currentSpineIndex atPageIndex:self.currentPageInSpineIndex];
       [[self.epub.chapters objectAtIndex:0] setDelegate:self];
-      [[self.epub.chapters objectAtIndex:0] loadChapterWithWindowSize:self.webView.bounds fontPercentSize:self.currentTextSize];
+      [[self.epub.chapters objectAtIndex:0] loadChapterWithWebView:_chapterWebView windowSize:self.webView.bounds fontPercentSize:self.currentTextSize];
       [self.currentPageLabel setText:@"?/?"];
     }
 	}
@@ -267,7 +290,7 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
 	}
 }
 
-- (IBAction)increaseTextSizeClicked:(id)sender {
+- (void)increaseTextSizeClicked:(id)sender {
 	if (!self.paginating) {
 		if (self.currentTextSize+25 <= 200) {
 			self.currentTextSize += 25;
@@ -280,7 +303,7 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
 	}
 }
 
-- (IBAction)decreaseTextSizeClicked:(id)sender {
+- (void)decreaseTextSizeClicked:(id)sender {
 	if (!self.paginating) {
 		if (self.currentTextSize-25 >= 50) {
 			self.currentTextSize -= 25;
@@ -293,11 +316,11 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
 	}
 }
 
-- (IBAction)doneClicked:(id)sender {
+- (void)doneClicked:(id)sender {
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)slidingStarted:(id)sender {
+- (void)slidingStarted:(id)sender {
   int targetPage = ((self.pageSlider.value/(float)100) * (float)self.totalPages);
   if (targetPage == 0) {
     targetPage++;
@@ -305,7 +328,7 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
 	[self.currentPageLabel setText:[NSString stringWithFormat:@"%d/%d", targetPage, self.totalPages]];
 }
 
-- (IBAction)slidingEnded:(id)sender {
+- (void)slidingEnded:(id)sender {
 	int targetPage = (int)((self.pageSlider.value/(float)100) * (float)self.totalPages);
   if (targetPage == 0) {
     targetPage++;
@@ -324,7 +347,7 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
 	[self loadSpine:chapterIndex atPageIndex:pageIndex];
 }
 
-- (IBAction)showChapterIndex:(id)sender {
+- (void)showChapterIndex:(id)sender {
 	if(_chaptersPopover == nil){
 		ChapterListViewController *chapterListView = [[ChapterListViewController alloc] init];
 		[chapterListView setEpubViewController:self];
@@ -360,7 +383,7 @@ currentTextSize = _currentTextSize, totalPages = _totalPages;
   self.totalPages += chapter.pages;
 	if (chapter.index + 1 < [self.epub.chapters count]) {
 		[[self.epub.chapters objectAtIndex:chapter.index+1] setDelegate:self];
-		[[self.epub.chapters objectAtIndex:chapter.index+1] loadChapterWithWindowSize:self.webView.bounds fontPercentSize:self.currentTextSize];
+		[[self.epub.chapters objectAtIndex:chapter.index+1] loadChapterWithWebView:_chapterWebView windowSize:self.webView.bounds fontPercentSize:self.currentTextSize];
 		[self.currentPageLabel setText:[NSString stringWithFormat:@"?/%d", _totalPages]];
 	} else {
 		[self.currentPageLabel setText:[NSString stringWithFormat:@"%d/%d",[self getGlobalPageCount], self.totalPages]];

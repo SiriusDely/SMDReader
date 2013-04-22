@@ -1,13 +1,20 @@
 
 PODS:
+- GTMNSString-HTML (0.0.1)
 - TouchXML (0.1)
 - ZipArchive (1.01h)
 
 DEPENDENCIES:
+- GTMNSString-HTML (from `~/Repositories/GTMNSString-HTML')
 - TouchXML (= 0.1)
 - ZipArchive (= 1.01h)
 
+EXTERNAL SOURCES:
+  GTMNSString-HTML:
+    :local: ~/Repositories/GTMNSString-HTML
+
 SPEC CHECKSUMS:
+  GTMNSString-HTML: 2628f286e4c90c3c85fd0edcf3752e2abda5c917
   TouchXML: 0fb977f0bdd2ce2e5d0790c80751769459708810
   ZipArchive: 1a98724ab6c80f6bb1bde02f831589b73062e91d
 

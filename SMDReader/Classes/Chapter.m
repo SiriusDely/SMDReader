@@ -7,10 +7,11 @@
 //
 
 #import "Chapter.h"
-#import "NSString+HTML.h"
+#import <NSString+HTML.h>
 
 @interface Chapter ()
 @property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, readonly) NSString *title;
 @end
 
 @implementation Chapter
@@ -31,10 +32,10 @@ windowSize = _windowSize, fontPercentSize = _fontPercentSize, webView = _webView
 
 # pragma mark - Public Methods
 
-- (void)loadChapterWithWindowSize:(CGRect)windowSize fontPercentSize:(int)fontPercentSize {
+- (void)loadChapterWithWebView:(UIWebView *)webView windowSize:(CGRect)windowSize fontPercentSize:(int)fontPercentSize {
   _fontPercentSize = fontPercentSize;
   _windowSize = windowSize;
-  _webView = [[UIWebView alloc] initWithFrame:_windowSize];
+  _webView = webView;
   [_webView setDelegate:self];
   NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:_path]];
   [_webView loadRequest:urlRequest];

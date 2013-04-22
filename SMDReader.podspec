@@ -21,5 +21,5 @@ Pod::Spec.new do |s|
   s.resources = "SMDReader/Resources/*.{png,js}"
   s.dependency 'TouchXML', '0.1'
   s.dependency 'ZipArchive', '1.01h'
+  s.dependency 'GTMNSString-HTML', '0.0.1', :local => '~/Repositories/GTMNSString-HTML'
 end
-

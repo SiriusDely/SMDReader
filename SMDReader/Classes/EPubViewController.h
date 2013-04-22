@@ -16,27 +16,10 @@
 
 @interface EPubViewController : UIViewController
 
-- (id)initWithFilePath:(NSString *)path;
-
-- (IBAction)showChapterIndex:(id)sender;
-- (IBAction)increaseTextSizeClicked:(id)sender;
-- (IBAction)decreaseTextSizeClicked:(id)sender;
-- (IBAction)slidingStarted:(id)sender;
-- (IBAction)slidingEnded:(id)sender;
-- (IBAction)doneClicked:(id)sender;
-
-- (void)loadSpine:(int)spineIndex atPageIndex:(int)pageIndex highlightSearchResult:(SearchResult *)result;
-
 @property (nonatomic, strong) EPub *epub;
-@property (nonatomic, strong) SearchResult *currentSearchResult;
-@property (nonatomic, strong) IBOutlet UIToolbar *toolbar;
-@property (nonatomic, strong) IBOutlet UIWebView *webView;
-@property (nonatomic, strong) IBOutlet UIBarButtonItem *chapterListButton, *decTextSizeButton, *incTextSizeButton;
-@property (nonatomic, strong) IBOutlet UISlider *pageSlider;
-@property (nonatomic, strong) IBOutlet UILabel *currentPageLabel;
-@property (nonatomic, strong) UIPopoverController *chaptersPopover, *searchResultsPopover;
-@property (nonatomic, strong) SearchResultsViewController *searchResViewController;
-@property (nonatomic, assign) int currentSpineIndex, currentPageInSpineIndex, pagesInCurrentSpineCount, currentTextSize, totalPages;
-@property (nonatomic, assign) BOOL loaded, paginating, searching;
+@property (nonatomic, assign) BOOL searching;
+
+- (id)initWithFilePath:(NSString *)path;
+- (void)loadSpine:(int)spineIndex atPageIndex:(int)pageIndex highlightSearchResult:(SearchResult *)result;
 
 @end

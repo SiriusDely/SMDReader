@@ -111,8 +111,9 @@
       [titlesDictionary setValue:[titleElement stringValue] forKey:href];
     }
   }
+  
 	NSArray *itemRefElements = [opfDocument nodesForXPath:@"//opf:itemref" namespaceMappings:[NSDictionary dictionaryWithObject:@"http://www.idpf.org/2007/opf" forKey:@"opf"]
-                                                error:nil];
+                                                  error:nil];
 	NSMutableArray *chapters = [[NSMutableArray alloc] init];
 	for (int count = 0; count < itemRefElements.count; count++) {
     CXMLElement *element = itemRefElements[count];
